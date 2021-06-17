@@ -11,13 +11,15 @@ function setup() {
   dog = createSprite(200,200)
   dog.addImage('hungry',hungrydogimage)
   dog.scale = 0.5
+  database = firebase.database()
+  var foodreference = database.ref('Food').on('value',readStock)
 }
-
 
 function draw() {  
 
   background(46, 139, 87)
-
+textSize(30)
+text('Remaining food :'+ foods,100,100)
 if(keyWentDown(UP_ARROW)){
 writeStock(foods);
 dog.addImage('happy',happydogimage)
@@ -49,3 +51,4 @@ else{
 
   database.ref('/').update({Food:x})
 }
+
